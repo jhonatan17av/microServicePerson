@@ -22,12 +22,12 @@ public class PersonServiceImpl implements IPersonService{
 
     @Override
     public Flux<Person> findByName(String name) {
-        return dao.findByName(name);
+        return dao.findBynamePerson(name);
     }
 
     @Override
     public Mono<Person> findByDni(String numDoc) {
-        return dao.findByDni(numDoc);
+        return dao.findBynumDoc(numDoc);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class PersonServiceImpl implements IPersonService{
 
     @Override
     public Flux<Person> findByDateRange(Date firstDate, Date lastDate) {
-        return dao.findByDateBirth(firstDate,lastDate);
+        return dao.findBydateBirth(firstDate,lastDate);
     }
 
     @Override

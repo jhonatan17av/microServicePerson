@@ -8,10 +8,9 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 
 //@Data
-@Document(collection = "Persons")
+@Document(collection = "persons")
 public class Person {
 
-    @NotBlank
     @Id
     private String id;
     @NotBlank
@@ -26,6 +25,18 @@ public class Person {
     private String gender;
     @NotBlank
     private Date dateBirth;
+
+    public Person() {
+    }
+
+    public Person(@NotBlank String namePerson, @NotBlank String lastName, @NotBlank String typeDoc, @NotBlank String numDoc, @NotBlank String gender, @NotBlank Date dateBirth) {
+        this.namePerson = namePerson;
+        this.lastName = lastName;
+        this.typeDoc = typeDoc;
+        this.numDoc = numDoc;
+        this.gender = gender;
+        this.dateBirth = dateBirth;
+    }
 
     public String getId() {
         return id;

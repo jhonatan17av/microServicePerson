@@ -10,8 +10,8 @@ import java.util.Date;
 
 public interface IPersonDao extends ReactiveMongoRepository<Person, String> {
 
-    public Flux<Person> findByName(String names);
-    public Mono<Person> findByDni(String numDoc);
-    public Flux<Person> findByDateBirth(Date firstDate, Date lastDate);
+    public Flux<Person> findBynamePerson(String names);
+    public Mono<Person> findBynumDoc(String numDoc);
+    public Flux<Person> findBydateBirth(Date firstDate, Date lastDate);
 
 }
