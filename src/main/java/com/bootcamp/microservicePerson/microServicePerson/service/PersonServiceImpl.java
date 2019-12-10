@@ -1,6 +1,6 @@
-package com.bootcamp.microservicePerson.microServicePerson.models.services;
+package com.bootcamp.microservicePerson.microServicePerson.service;
 
-import com.bootcamp.microservicePerson.microServicePerson.models.dao.IPersonDao;
+import com.bootcamp.microservicePerson.microServicePerson.repository.PersonRepository;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,40 +12,40 @@ import reactor.core.publisher.Mono;
 public class PersonServiceImpl implements IPersonService {
 
   @Autowired
-  private IPersonDao dao;
+  private PersonRepository personRepository;
 
   @Override
   public Flux<Person> findAll() {
-    return dao.findAll();
+    return personRepository.findAll();
   }
 
   @Override
   public Flux<Person> findByName(String name) {
-    return dao.findBynamePerson(name);
+    return personRepository.findBynamePerson(name);
   }
 
   @Override
   public Mono<Person> findByDni(String numDoc) {
-    return dao.findBynumDoc(numDoc);
+    return personRepository.findBynumDoc(numDoc);
   }
 
   @Override
   public Mono<Person> findById(String id) {
-    return dao.findById(id);
+    return personRepository.findById(id);
   }
 
   @Override
   public Flux<Person> findByDateRange(Date firstDate, Date lastDate) {
-    return dao.findBydateBirth(firstDate,lastDate);
+    return personRepository.findBydateBirth(firstDate,lastDate);
   }
 
   @Override
   public Mono<Person> savePerson(Person person) {
-    return dao.save(person);
+    return personRepository.save(person);
   }
 
   @Override
   public Mono<Void> deletePerson(Person person) {
-    return dao.delete(person);
+    return personRepository.delete(person);
   }
 }

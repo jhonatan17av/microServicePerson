@@ -1,4 +1,4 @@
-package com.bootcamp.microservicePerson.microServicePerson.models.services;
+package com.bootcamp.microservicePerson.microServicePerson.service;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import reactor.core.publisher.Flux;

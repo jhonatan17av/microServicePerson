@@ -1,11 +1,16 @@
 package com.bootcamp.microservicePerson.microServicePerson.controller;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
-import com.bootcamp.microservicePerson.microServicePerson.models.services.PersonServiceImpl;
+import com.bootcamp.microservicePerson.microServicePerson.service.PersonServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import java.net.URI;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,10 +27,9 @@ import org.springframework.web.bind.support.WebExchangeBindException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
-
 @RestController
 @RequestMapping("/person")
+@Api(value = "infos", description = "Infos API", produces = "application/json")
 public class PersonRestController {
 
   @Autowired
@@ -35,6 +39,10 @@ public class PersonRestController {
   * This method list Persons
   */
   @GetMapping
+  @ApiOperation(value = "Get Infos", notes = "Returns all infos")
+  @ApiResponses({
+          @ApiResponse(code = 200, message = "Exits one info at least")
+  })
   public Mono<ResponseEntity<Flux<Person>>> findAllPerson() {
     return Mono.just(ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)
@@ -126,6 +134,8 @@ public class PersonRestController {
               p.setNumDoc(person.getNumDoc());
               p.setGender(person.getGender());
               p.setDateBirth(person.getDateBirth());
+              p.setCreateAt(new Date());
+              p.setListNumAccounts(person.getListNumAccounts());
               return personService.savePerson(p);
             }).map(per -> ResponseEntity
                     .created(URI.create("/person".concat(per.getId())))

@@ -1,8 +1,7 @@
 /**.
 * Info about this package doing something for package-info.java file.
 */
-
-package com.bootcamp.microservicePerson.microServicePerson.models.dao;
+package com.bootcamp.microservicePerson.microServicePerson.repository;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import java.util.Date;
@@ -14,7 +13,7 @@ import reactor.core.publisher.Mono;
 /**.
  * Esta en la injeccion de nuestro Respository
  */
-public interface IPersonDao extends ReactiveMongoRepository<Person, String> {
+public interface PersonRepository extends ReactiveMongoRepository<Person, String> {
   /**.
  * Esta en la injeccion de nuestro Respository
  * @param names ""
@@ -23,7 +22,7 @@ public interface IPersonDao extends ReactiveMongoRepository<Person, String> {
   Flux<Person> findBynamePerson(String names);
   
   /**.
- * Esta en la injeccion de nuestro Respository
+ * 'Esta en la injeccion de nuestro Respository'
  * @param numDoc ""
  * @return Flux
  */
