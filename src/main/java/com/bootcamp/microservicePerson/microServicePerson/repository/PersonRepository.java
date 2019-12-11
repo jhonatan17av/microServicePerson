@@ -5,6 +5,8 @@ package com.bootcamp.microservicePerson.microServicePerson.repository;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import java.util.Date;
+
+import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

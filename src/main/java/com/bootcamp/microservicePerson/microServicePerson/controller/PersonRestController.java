@@ -1,6 +1,8 @@
 package com.bootcamp.microservicePerson.microServicePerson.controller;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
+import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
+import com.bootcamp.microservicePerson.microServicePerson.service.IPersonService;
 import com.bootcamp.microservicePerson.microServicePerson.service.PersonServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,11 +31,10 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/person")
-@Api(value = "infos", description = "Infos API", produces = "application/json")
 public class PersonRestController {
 
   @Autowired
-    private PersonServiceImpl personService;
+    private IPersonService personService;
 
   /**.
   * This method list Persons
@@ -89,16 +90,17 @@ public class PersonRestController {
   * This method save Persons
   */
   @PostMapping
-  public Mono<ResponseEntity<Map<String, Object>>> savePerson(
-      @RequestBody Mono<Person> personMono) {
+  public Mono<ResponseEntity<Map<String, Object>>> savePerson(@RequestBody Mono<PersonDto> personMono) {
     Map<String, Object> respuesta = new HashMap<>();
-    return personMono.flatMap(person -> {
-      if (person.getDateBirth() == null) {
-        person.setDateBirth(new Date());
+    return personMono.flatMap(personDto -> {
+      if (personDto.getDateBirth() == null || personDto.getCreateAt() == null ) {
+          personDto.setDateBirth(new Date());
+          personDto.setCreateAt(new Date());
       }
-      return personService.savePerson(person)
+      personDto.setUpdateAt(new Date());
+      return personService.savePersonDto(personDto)
                 .map(p -> {
-                  respuesta.put("Person :", person);
+                  respuesta.put("Person :", personDto);
                   return ResponseEntity
         .created(URI.create("/person"))
                         .contentType(MediaType.APPLICATION_JSON)

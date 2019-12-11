@@ -1,5 +1,7 @@
 package com.bootcamp.microservicePerson.microServicePerson.service;
 
+import com.bootcamp.microservicePerson.microServicePerson.convertion.ConvertPerson;
+import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import com.bootcamp.microservicePerson.microServicePerson.repository.PersonRepository;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import java.util.Date;
@@ -13,6 +15,8 @@ public class PersonServiceImpl implements IPersonService {
 
   @Autowired
   private PersonRepository personRepository;
+  @Autowired
+  private ConvertPerson convertPerson;
 
   @Override
   public Flux<Person> findAll() {
@@ -42,6 +46,11 @@ public class PersonServiceImpl implements IPersonService {
   @Override
   public Mono<Person> savePerson(Person person) {
     return personRepository.save(person);
+  }
+
+  @Override
+  public Mono<Person> savePersonDto(PersonDto personDto) {
+    return personRepository.save(convertPerson.toPerson(personDto));
   }
 
   @Override

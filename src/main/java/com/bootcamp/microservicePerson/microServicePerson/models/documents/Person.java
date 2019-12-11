@@ -37,10 +37,8 @@ public class Person {
   @NotBlank
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date updateAt;
-  /*@NotBlank
-  private List<String> listNumAccounts;*/
   @NotBlank
-  private Map<String, String> listNumAccounts;
+  private List<String> listNumAccounts;
 
   public Person() {
   }
@@ -53,7 +51,7 @@ public class Person {
 		@NotBlank String typeDoc, @NotBlank String numDoc,
 		@NotBlank String gender, @NotBlank Date dateBirth,
 		@NotBlank Date createAt, @NotBlank Date updateAt,
-		@NotBlank Map<String, String> listNumAccounts) {
+		@NotBlank List<String> listNumAccounts) {
 	this.namePerson = namePerson;
 	this.lastName = lastName;
 	this.typeDoc = typeDoc;
@@ -65,85 +63,4 @@ public class Person {
 	this.listNumAccounts = listNumAccounts;
   }
 
-  public String getId() {
-	return id;
-  }
-
-  public void setId(String id) {
-	this.id = id;
-  }
-
-  public String getNamePerson() {
-	return namePerson;
-  }
-
-  public void setNamePerson(String namePerson) {
-	this.namePerson = namePerson;
-  }
-
-  public String getLastName() {
-	return lastName;
-  }
-
-  public void setLastName(String lastName) {
-	this.lastName = lastName;
-  }
-
-  public String getTypeDoc() {
-	return typeDoc;
-  }
-
-  public void setTypeDoc(String typeDoc) {
-	this.typeDoc = typeDoc;
-  }
-
-  public String getNumDoc() {
-	return numDoc;
-  }
-
-  public void setNumDoc(String numDoc) {
-	this.numDoc = numDoc;
-  }
-
-public String getGender() {
-	return gender;
-}
-
-public void setGender(String gender) {
-	this.gender = gender;
-}
-
-public Date getDateBirth() {
-	return dateBirth;
-}
-
-public void setDateBirth(Date dateBirth) {
-	this.dateBirth = dateBirth;
-}
-
-public Date getCreateAt() {
-	return createAt;
-}
-
-public void setCreateAt(Date createAt) {
-	this.createAt = createAt;
-}
-
-public Date getUpdateAt() {
-	return updateAt;
-}
-
-public void setUpdateAt(Date updateAt) {
-	this.updateAt = updateAt;
-}
-
-public Map<String, String> getListNumAccounts() {
-	return listNumAccounts;
-}
-
-public void setListNumAccounts(Map<String, String> listNumAccounts) {
-	this.listNumAccounts = listNumAccounts;
-}
-
-  
 }

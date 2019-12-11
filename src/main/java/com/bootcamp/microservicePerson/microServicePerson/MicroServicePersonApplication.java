@@ -3,10 +3,7 @@ package com.bootcamp.microservicePerson.microServicePerson;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import com.bootcamp.microservicePerson.microServicePerson.repository.PersonRepository;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,9 +50,10 @@ public class MicroServicePersonApplication implements CommandLineRunner {
   public void run(final String... args) throws Exception {
     mongoTemplate.dropCollection("persons").subscribe();
 
-    Map<String, String> asd = new HashMap<>();
-    asd.put("Cuenta corriente", "77777777777");
-    asd.put("Cuenta de ahorro", "22222222222");
+    List<String> asd = new ArrayList<>();
+    asd.add("77777777777");
+    asd.add("22222222222");
+    
     Flux.just(new Person("Jhonatan", "Aruhanca Vilca",
                 "DNI", "70034427", "M", new Date(), new Date(), new Date(), asd))
                 .flatMap(person -> dao.save(person))
