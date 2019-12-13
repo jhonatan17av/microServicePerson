@@ -1,10 +1,14 @@
 package com.bootcamp.microservicePerson.microServicePerson.service;
 
+import com.bootcamp.microservicePerson.microServicePerson.MicroServicePersonApplication;
 import com.bootcamp.microservicePerson.microServicePerson.convertion.ConvertPerson;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import com.bootcamp.microservicePerson.microServicePerson.repository.PersonRepository;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -17,6 +21,9 @@ public class PersonServiceImpl implements IPersonService {
   private PersonRepository personRepository;
   @Autowired
   private ConvertPerson convertPerson;
+
+  private static final Logger LOG =
+          LoggerFactory.getLogger(PersonServiceImpl.class);
 
   @Override
   public Flux<Person> findAll() {
@@ -45,7 +52,13 @@ public class PersonServiceImpl implements IPersonService {
 
   @Override
   public Mono<Person> savePerson(Person person) {
+    LOG.info(person.toString());
     return personRepository.save(person);
+  }
+
+  @Override
+  public Mono<PersonDto> update(PersonDto personDto) {
+    return null;
   }
 
   @Override

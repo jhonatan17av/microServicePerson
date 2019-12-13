@@ -1,7 +1,9 @@
 package com.bootcamp.microservicePerson.microServicePerson.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -17,13 +19,16 @@ public class PersonDto {
     private String typeDoc;
     private String numDoc;
     private String gender;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dateBirth;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createAt;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date updateAt;
-    private String numCuenta;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private Date createdAt;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private Date updatedAt;
+    private String idAccount;
+    private String numAccount;
+    private String nomAccount;
+    private String typeAccount;
 
 
 }

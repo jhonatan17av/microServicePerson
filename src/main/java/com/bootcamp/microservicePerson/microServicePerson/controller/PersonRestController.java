@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,6 +37,9 @@ public class PersonRestController {
 
   @Autowired
     private IPersonService personService;
+
+    private static final Logger LOG =
+            LoggerFactory.getLogger(PersonRestController.class);
 
   /**.
   * This method list Persons
@@ -89,38 +94,32 @@ public class PersonRestController {
   /**.
   * This method save Persons
   */
-  @PostMapping
-  public Mono<ResponseEntity<Map<String, Object>>> savePerson(@RequestBody Mono<PersonDto> personMono) {
-    Map<String, Object> respuesta = new HashMap<>();
-    return personMono.flatMap(personDto -> {
-      if (personDto.getDateBirth() == null || personDto.getCreateAt() == null ) {
-          personDto.setDateBirth(new Date());
-          personDto.setCreateAt(new Date());
-      }
-      personDto.setUpdateAt(new Date());
-      return personService.savePersonDto(personDto)
-                .map(p -> {
-                  respuesta.put("Person :", personDto);
-                  return ResponseEntity
-        .created(URI.create("/person"))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(respuesta);
-                });
-    }).onErrorResume(throwable -> {
-      return Mono.just(throwable).cast(WebExchangeBindException.class)
-            .flatMap(e -> Mono.just(e.getFieldErrors()))
-            .flatMapMany(Flux::fromIterable)
-            .map(fieldError -> "El campo" + fieldError.getField() + " "
-            + fieldError.getDefaultMessage())
-.collectList()
-.flatMap(list -> {
-  respuesta.put("Errors : ", list);
-  respuesta.put("timestamp : ", new Date());
-  respuesta.put("status", HttpStatus.BAD_REQUEST.value());
-  return Mono.just(ResponseEntity.badRequest().body(respuesta));
-});
-    });
+  @PostMapping("/dto")
+  public Mono<ResponseEntity<Person>> savePerson(@RequestBody Person personMono) {
+      return Mono.just(personMono)
+              .flatMap(person -> {
+                  if (person.getDateBirth() == null ) {
+                      person.setDateBirth(new Date());
+                  }
+                  return personService.savePerson(personMono)
+                          .map(s -> ResponseEntity.created(URI.create("/person".concat(s.getId())))
+                                  .contentType(MediaType.APPLICATION_JSON).body(s));
+              });
   }
+
+    @PostMapping
+    public Mono<ResponseEntity<Person>> savePersondDto(@RequestBody PersonDto personMono) {
+      LOG.info("Controlador person : " + personMono.toString());
+        return Mono.just(personMono)
+                .flatMap(person -> {
+                    if (person.getDateBirth() == null ) {
+                        person.setDateBirth(new Date());
+                    }
+                    return personService.savePersonDto(personMono)
+                            .map(s -> ResponseEntity.created(URI.create("/person".concat(s.getId())))
+                                    .contentType(MediaType.APPLICATION_JSON).body(s));
+                });
+    }
 
   /**.
   * This method update Persons
@@ -137,7 +136,7 @@ public class PersonRestController {
               p.setGender(person.getGender());
               p.setDateBirth(person.getDateBirth());
               p.setCreateAt(new Date());
-              p.setListNumAccounts(person.getListNumAccounts());
+              p.setAccountsList(person.getAccountsList());
               return personService.savePerson(p);
             }).map(per -> ResponseEntity
                     .created(URI.create("/person".concat(per.getId())))
@@ -157,5 +156,4 @@ public class PersonRestController {
                         .then(Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
             }).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
   }
-
 }

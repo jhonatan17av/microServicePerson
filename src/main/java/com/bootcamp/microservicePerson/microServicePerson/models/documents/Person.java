@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -12,11 +14,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
-@ApiModel(value = "Info entity", description = "Complete data of a entity Info")
 @Document(collection = "persons")
 public class Person {
 
   @Id
+  @NotBlank
   private String id;
   @NotBlank
   private String namePerson;
@@ -29,16 +31,18 @@ public class Person {
   @NotBlank
   private String gender;
   @NotBlank
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private Date dateBirth;
   @NotBlank
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private Date createAt;
   @NotBlank
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private Date updateAt;
+  /*@NotBlank
+  private List<String> listNumAccounts;*/
   @NotBlank
-  private List<String> listNumAccounts;
+  private List<Account> accountsList;
 
   public Person() {
   }
@@ -46,21 +50,19 @@ public class Person {
   /**.
   * This method list Persons
   */
-  
-  public Person(@NotBlank String namePerson, @NotBlank String lastName,
-		@NotBlank String typeDoc, @NotBlank String numDoc,
-		@NotBlank String gender, @NotBlank Date dateBirth,
-		@NotBlank Date createAt, @NotBlank Date updateAt,
-		@NotBlank List<String> listNumAccounts) {
-	this.namePerson = namePerson;
-	this.lastName = lastName;
-	this.typeDoc = typeDoc;
-	this.numDoc = numDoc;
-	this.gender = gender;
-	this.dateBirth = dateBirth;
-	this.createAt = createAt;
-	this.updateAt = updateAt;
-	this.listNumAccounts = listNumAccounts;
-  }
-
+    public Person(@NotBlank String namePerson, @NotBlank String lastName,
+                  @NotBlank String typeDoc, @NotBlank String numDoc,
+                  @NotBlank String gender, @NotBlank Date dateBirth,
+                  @NotBlank Date createAt, @NotBlank Date updateAt,
+                  @NotBlank List<Account> accountsList) {
+        this.namePerson = namePerson;
+        this.lastName = lastName;
+        this.typeDoc = typeDoc;
+        this.numDoc = numDoc;
+        this.gender = gender;
+        this.dateBirth = dateBirth;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+        this.accountsList = accountsList;
+    }
 }

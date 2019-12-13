@@ -1,5 +1,6 @@
 package com.bootcamp.microservicePerson.microServicePerson;
 
+import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import com.bootcamp.microservicePerson.microServicePerson.repository.PersonRepository;
 
@@ -50,12 +51,16 @@ public class MicroServicePersonApplication implements CommandLineRunner {
   public void run(final String... args) throws Exception {
     mongoTemplate.dropCollection("persons").subscribe();
 
-    List<String> asd = new ArrayList<>();
+    /*List<String> asd = new ArrayList<>();
     asd.add("77777777777");
     asd.add("22222222222");
+     */
+
+    List<Account> asd = new ArrayList<>();
+    asd.add(new Account("321654","321654987","Cuenta de Ahorro", "VIp"));
     
     Flux.just(new Person("Jhonatan", "Aruhanca Vilca",
-                "DNI", "70034427", "M", new Date(), new Date(), new Date(), asd))
+            "DNI", "70034427", "M",new Date(),new Date(),new Date(), asd))
                 .flatMap(person -> dao.save(person))
                 .subscribe(person -> LOG.info("Person inserted :"
                         + person.getNamePerson()));

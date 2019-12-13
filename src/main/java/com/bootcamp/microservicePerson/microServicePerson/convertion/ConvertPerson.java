@@ -1,5 +1,6 @@
 package com.bootcamp.microservicePerson.microServicePerson.convertion;
 
+import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import org.springframework.stereotype.Component;
@@ -12,10 +13,19 @@ import java.util.List;
 public class ConvertPerson {
 
     public Person toPerson(PersonDto personDto){
+        List<Account> lst = new ArrayList<>();
         Person person = new Person();
+        Account account = new Account();
+        account.setIdAccount(personDto.getIdAccount());
+        account.setNumAccount(personDto.getNumAccount());
+        account.setNomAccount(personDto.getNomAccount());
+        account.setTypeAccount(personDto.getTypeAccount());
+        lst.add(account);
 
-        List<String> numCuentas = new ArrayList<>();
-        numCuentas.add(personDto.getNumCuenta());
+        /*List<String> numCuentas = new ArrayList<>();
+        numCuentas.add(personDto.getNumAccount());
+
+         */
 
         person.setNamePerson(personDto.getNamePerson());
         person.setLastName(personDto.getLastName());
@@ -23,9 +33,10 @@ public class ConvertPerson {
         person.setNumDoc(personDto.getNumDoc());
         person.setGender(personDto.getGender());
         person.setDateBirth(personDto.getDateBirth());
-        person.setCreateAt(personDto.getCreateAt());
-        person.setUpdateAt(personDto.getUpdateAt());
-        person.setListNumAccounts(numCuentas);
+        person.setCreateAt(personDto.getCreatedAt());
+        person.setUpdateAt(personDto.getUpdatedAt());
+        //person.setListNumAccounts(numCuentas);
+        person.setAccountsList(lst);
 
         return person;
 
