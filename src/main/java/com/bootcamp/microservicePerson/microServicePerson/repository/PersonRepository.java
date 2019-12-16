@@ -17,21 +17,21 @@ import reactor.core.publisher.Mono;
  */
 public interface PersonRepository extends ReactiveMongoRepository<Person, String> {
   /**.
- * Esta en la injeccion de nuestro Respository
+ * Esta es el nuevo metodo Buscar por Nombre de persona
  * @param names ""
  * @return Flux
  */
   Flux<Person> findBynamePerson(String names);
   
   /**.
- * 'Esta en la injeccion de nuestro Respository'
+ * Esta es el nuevo metodo Buscar por Numero de Documento de persona
  * @param numDoc ""
  * @return Flux
  */
   Mono<Person> findBynumDoc(String numDoc);
 
   /**.
- * Esta en la injeccion de nuestro Respository
+ * Esta es el nuevo metodo para buscar por rango de fecha de persona
  * @param firstDate new Date()
  * @param lastDate new Date()
  * @return Flux

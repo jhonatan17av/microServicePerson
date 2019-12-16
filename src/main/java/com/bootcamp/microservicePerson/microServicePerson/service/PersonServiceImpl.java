@@ -57,11 +57,6 @@ public class PersonServiceImpl implements IPersonService {
   }
 
   @Override
-  public Mono<PersonDto> update(PersonDto personDto) {
-    return null;
-  }
-
-  @Override
   public Mono<Person> savePersonDto(PersonDto personDto) {
     return personRepository.save(convertPerson.toPerson(personDto));
   }

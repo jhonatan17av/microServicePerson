@@ -21,8 +21,6 @@ public interface IPersonService {
   
   Mono<Person> savePerson(Person person);
 
-  Mono<PersonDto> update(PersonDto personDto);
-
   Mono<Person> savePersonDto(PersonDto personDto);
   
   Mono<Void> deletePerson(Person person);
