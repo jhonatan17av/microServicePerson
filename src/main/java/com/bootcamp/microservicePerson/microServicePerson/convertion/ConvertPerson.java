@@ -22,11 +22,6 @@ public class ConvertPerson {
         account.setTypeAccount(personDto.getTypeAccount());
         lst.add(account);
 
-        /*List<String> numCuentas = new ArrayList<>();
-        numCuentas.add(personDto.getNumAccount());
-
-         */
-
         person.setNamePerson(personDto.getNamePerson());
         person.setLastName(personDto.getLastName());
         person.setTypeDoc(personDto.getTypeDoc());

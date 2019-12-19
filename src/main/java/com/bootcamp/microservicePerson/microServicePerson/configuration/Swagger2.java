@@ -29,7 +29,7 @@ public class Swagger2 {
                 .apiInfo(apiInfo())
                 .enable(true)
                 .select()
-                .paths(PathSelectors.ant("com.bootcamp.microservicePerson.microServicePerson.controller"))
+                .paths(PathSelectors.ant("/person/**"))
                 .build();
     }
     private ApiInfo apiInfo() {
