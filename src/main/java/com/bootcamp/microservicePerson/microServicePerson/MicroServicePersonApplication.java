@@ -58,7 +58,7 @@ public class MicroServicePersonApplication implements CommandLineRunner {
      */
 
     List<Account> asd = new ArrayList<>();
-    asd.add(new Account("321654","321654987","Cuenta de Ahorro", "VIp"));
+    asd.add(new Account("321654","Cuenta de Ahorro", "VIp","Active"));
     
     Flux.just(new Person("Jhonatan", "Aruhanca Vilca",
             "DNI", "70034427", "M",new Date(),new Date(),new Date(), asd))

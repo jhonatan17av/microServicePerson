@@ -8,21 +8,22 @@ import javax.validation.constraints.NotBlank;
 public class Account {
 
     @NotBlank
-    private String idAccount;
-    @NotBlank
     private String numAccount;
     @NotBlank
     private String nomAccount;
     @NotBlank
     private String typeAccount;
+    @NotBlank
+    private String status;
 
     public Account() {
     }
 
-    public Account(@NotBlank String idAccount, @NotBlank String numAccount, @NotBlank String nomAccount, @NotBlank String typeAccount) {
-        this.idAccount = idAccount;
+    public Account(@NotBlank String numAccount, @NotBlank String nomAccount,
+                   @NotBlank String typeAccount, @NotBlank String status) {
         this.numAccount = numAccount;
         this.nomAccount = nomAccount;
         this.typeAccount = typeAccount;
+        this.status = status;
     }
 }

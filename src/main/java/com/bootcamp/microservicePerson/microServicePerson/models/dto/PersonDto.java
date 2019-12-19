@@ -25,10 +25,8 @@ public class PersonDto {
     private Date createdAt;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date updatedAt;
-    private String idAccount;
     private String numAccount;
     private String nomAccount;
     private String typeAccount;
-
-
+    private String status;
 }

@@ -135,7 +135,7 @@ public class PersonRestController {
               p.setNumDoc(person.getNumDoc());
               p.setGender(person.getGender());
               p.setDateBirth(person.getDateBirth());
-              p.setCreateAt(new Date());
+              p.setCreatedAt(new Date());
               p.setAccountsList(person.getAccountsList());
               return personService.savePerson(p);
             }).map(per -> ResponseEntity

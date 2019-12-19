@@ -16,10 +16,10 @@ public class ConvertPerson {
         List<Account> lst = new ArrayList<>();
         Person person = new Person();
         Account account = new Account();
-        account.setIdAccount(personDto.getIdAccount());
         account.setNumAccount(personDto.getNumAccount());
         account.setNomAccount(personDto.getNomAccount());
         account.setTypeAccount(personDto.getTypeAccount());
+        account.setStatus(personDto.getStatus());
         lst.add(account);
 
         person.setNamePerson(personDto.getNamePerson());
@@ -28,9 +28,8 @@ public class ConvertPerson {
         person.setNumDoc(personDto.getNumDoc());
         person.setGender(personDto.getGender());
         person.setDateBirth(personDto.getDateBirth());
-        person.setCreateAt(personDto.getCreatedAt());
-        person.setUpdateAt(personDto.getUpdatedAt());
-        //person.setListNumAccounts(numCuentas);
+        person.setCreatedAt(personDto.getCreatedAt());
+        person.setUpdatedAt(personDto.getUpdatedAt());
         person.setAccountsList(lst);
 
         return person;

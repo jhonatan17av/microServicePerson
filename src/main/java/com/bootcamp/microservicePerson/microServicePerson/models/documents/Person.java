@@ -35,12 +35,10 @@ public class Person {
   private Date dateBirth;
   @NotBlank
   @JsonFormat(pattern = "dd-MM-yyyy")
-  private Date createAt;
+  private Date createdAt;
   @NotBlank
   @JsonFormat(pattern = "dd-MM-yyyy")
-  private Date updateAt;
-  /*@NotBlank
-  private List<String> listNumAccounts;*/
+  private Date updatedAt;
   @NotBlank
   private List<Account> accountsList;
 
@@ -61,8 +59,8 @@ public class Person {
         this.numDoc = numDoc;
         this.gender = gender;
         this.dateBirth = dateBirth;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
+        this.createdAt = createAt;
+        this.updatedAt = updateAt;
         this.accountsList = accountsList;
     }
 }
