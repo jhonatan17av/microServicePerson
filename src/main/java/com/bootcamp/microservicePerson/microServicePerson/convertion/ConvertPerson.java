@@ -36,4 +36,14 @@ public class ConvertPerson {
 
     }
 
+    public Account toNewAccount(PersonDto dto){
+        Account account = new Account();
+        account.setNumAccount(dto.getNumAccount());
+        account.setNomAccount(dto.getNomAccount());
+        account.setTypeAccount(dto.getTypeAccount());
+        account.setStatus(dto.getStatus());
+        return account;
+    }
+
+
 }

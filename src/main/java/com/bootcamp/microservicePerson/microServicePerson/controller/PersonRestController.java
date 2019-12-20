@@ -92,7 +92,7 @@ public class PersonRestController {
   }
 
   /**.
-  * This method save Persons
+  * This method save Persons with List of Accounts
   */
   @PostMapping("/dto")
   public Mono<ResponseEntity<Person>> savePerson(@RequestBody Person personMono) {
@@ -107,6 +107,9 @@ public class PersonRestController {
               });
   }
 
+  /**.
+   * This method save Persons with just only one account
+  */
     @PostMapping
     public Mono<ResponseEntity<Person>> savePersondDto(@RequestBody PersonDto personMono) {
       LOG.info("Controlador person : " + personMono.toString());
