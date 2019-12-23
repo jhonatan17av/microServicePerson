@@ -2,6 +2,7 @@ package com.bootcamp.microservicePerson.microServicePerson.convertion;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
+import com.bootcamp.microservicePerson.microServicePerson.models.dto.AccountDto;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;

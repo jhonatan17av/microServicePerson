@@ -21,22 +21,14 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 @Configuration
 @EnableSwagger2WebFlux
-public class Swagger2 {
+public class SwaggerConfig {
 
     @Bean
-    public Docket api() {
+    public Docket customerSwagger() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .enable(true)
                 .select()
-                .paths(PathSelectors.ant("/person/**"))
-                .build();
-    }
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Reactive Streams Starter Demo")
-                .description("Reactive Streams Starter Demo")
-                .version("2.0")
+                .apis(RequestHandlerSelectors.basePackage("com.bootcamp.microservicePerson.microServicePerson.controller"))
+                .paths(PathSelectors.any())
                 .build();
     }
 
