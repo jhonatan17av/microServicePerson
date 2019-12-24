@@ -16,12 +16,9 @@ public interface IPersonService {
   Mono<Person> findById(String id);
   Mono<Person> savePerson(Person person);
   Mono<Person> savePersonDto(PersonDto personDto);
+  Mono<Person> updatePersonDto(PersonDto personDto, String numDoc);
   Mono<Void> deletePerson(Person person);
 
   Flux<Person> findByDateRange(Date firstDate, Date lastDate);
-
-  Flux<Person> findByDoc(String numDoc);
-
-  Mono<Person> updatePerson(AccountDto accountDto);
 
 }

@@ -1,5 +1,6 @@
 package com.bootcamp.microservicePerson.microServicePerson.controller;
 
+import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.AccountDto;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
@@ -67,6 +68,14 @@ public class PersonRestController {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(person))
             .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
+
+  @GetMapping("/lstAccount/{numDoc}")
+    public Flux<Account> findAccounts(@PathVariable String numDoc) {
+        return personService.findByDni(numDoc)
+                .flatMapMany(person -> {
+                    return Flux.fromIterable(person.getAccountsList());
+                });
   }
 
   /**.

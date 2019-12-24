@@ -1,4 +1,4 @@
-/**.
+/*.
 * Info about this package doing something for package-info.java file.
 */
 package com.bootcamp.microservicePerson.microServicePerson.repository;
@@ -38,4 +38,6 @@ public interface PersonRepository extends ReactiveMongoRepository<Person, String
  * @return Flux
  */
   Flux<Person> findBydateBirth(Date firstDate, Date lastDate);
+
+  Flux<AccountDto> findAllAccountsByNumDoc(String numDoc);
 }

@@ -2,10 +2,13 @@ package com.bootcamp.microservicePerson.microServicePerson.service;
 
 import com.bootcamp.microservicePerson.microServicePerson.MicroServicePersonApplication;
 import com.bootcamp.microservicePerson.microServicePerson.convertion.ConvertPerson;
+import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.AccountDto;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import com.bootcamp.microservicePerson.microServicePerson.repository.PersonRepository;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,13 +69,11 @@ public class PersonServiceImpl implements IPersonService {
   }
 
   @Override
-  public Flux<Person> findByDoc(String numDoc) {
-    return null;
-  }
-
-  @Override
-  public Mono<Person> updatePerson(AccountDto accountDto) {
-    return null;
+  public Mono<Person> updatePersonDto(PersonDto personDto, String numDoc) {
+    return personRepository.findBynumDoc(numDoc)
+            .flatMap(person -> {
+              return personRepository.save(person);
+            });
   }
 
   @Override
