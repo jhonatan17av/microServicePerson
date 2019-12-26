@@ -38,6 +38,4 @@ public interface PersonRepository extends ReactiveMongoRepository<Person, String
  * @return Flux
  */
   Flux<Person> findBydateBirth(Date firstDate, Date lastDate);
-
-  Flux<AccountDto> findAllAccountsByNumDoc(String numDoc);
 }

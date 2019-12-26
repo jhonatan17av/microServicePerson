@@ -69,7 +69,9 @@ public class PersonRestController {
                     .body(person))
             .defaultIfEmpty(ResponseEntity.notFound().build());
   }
-
+ /**.
+ * This method list Persons by Id
+ */
   @GetMapping("/lstAccount/{numDoc}")
     public Flux<Account> findAccounts(@PathVariable String numDoc) {
         return personService.findByDni(numDoc)
@@ -137,26 +139,35 @@ public class PersonRestController {
   /**.
   * This method update Persons
   */
-  @PutMapping("/{id}")
-  public Mono<ResponseEntity<Person>> updatePerson(@RequestBody Person person,
-      @PathVariable String id) {
-    return personService.findById(id)
-            .flatMap(p -> {
-              p.setNamePerson(person.getNamePerson());
-              p.setLastName(person.getLastName());
-              p.setTypeDoc(person.getTypeDoc());
-              p.setNumDoc(person.getNumDoc());
-              p.setGender(person.getGender());
-              p.setDateBirth(person.getDateBirth());
-              p.setCreatedAt(new Date());
-              p.setAccountsList(person.getAccountsList());
-              return personService.savePerson(p);
-            }).map(per -> ResponseEntity
-                    .created(URI.create("/person".concat(per.getId())))
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(per))
+  @PutMapping("/dto/{numDoc}")
+  public Mono<ResponseEntity<PersonDto>> updatePerson2(@RequestBody PersonDto personDto,
+      @PathVariable String numDoc) {
+    return personService.updatePersonDto(personDto,numDoc)
+            .map(person -> ResponseEntity.created(URI.create("/person".concat(person.getId())))
+                    .contentType(MediaType.APPLICATION_JSON).body(personDto))
             .defaultIfEmpty(ResponseEntity.notFound().build());
   }
+
+    @PutMapping("/{id}")
+    public Mono<ResponseEntity<Person>> updatePerson(@RequestBody Person person,
+                                                     @PathVariable String id) {
+        return personService.findById(id)
+                .flatMap(p -> {
+                    p.setNamePerson(person.getNamePerson());
+                    p.setLastName(person.getLastName());
+                    p.setTypeDoc(person.getTypeDoc());
+                    p.setNumDoc(person.getNumDoc());
+                    p.setGender(person.getGender());
+                    p.setDateBirth(person.getDateBirth());
+                    p.setCreatedAt(new Date());
+                    p.setAccountsList(person.getAccountsList());
+                    return personService.savePerson(p);
+                }).map(per -> ResponseEntity
+                        .created(URI.create("/person".concat(per.getId())))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(per))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 
   /**.
   * This method delete Persons

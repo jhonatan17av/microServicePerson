@@ -72,6 +72,24 @@ public class PersonServiceImpl implements IPersonService {
   public Mono<Person> updatePersonDto(PersonDto personDto, String numDoc) {
     return personRepository.findBynumDoc(numDoc)
             .flatMap(person -> {
+              List<Account> lstAccounts = person.getAccountsList();
+              Account account = new Account();
+              account.setNumAccount(personDto.getNumAccount());
+              account.setNomAccount(personDto.getNomAccount());
+              account.setTypeAccount(personDto.getTypeAccount());
+              account.setStatus(personDto.getStatus());
+              lstAccounts.add(account);
+
+              person.setNamePerson(personDto.getNamePerson());
+              person.setLastName(personDto.getLastName());
+              person.setTypeDoc(personDto.getTypeDoc());
+              person.setNumDoc(personDto.getNumDoc());
+              person.setGender(personDto.getGender());
+              person.setDateBirth(personDto.getDateBirth());
+              person.setCreatedAt(personDto.getCreatedAt());
+              person.setUpdatedAt(personDto.getUpdatedAt());
+              person.setAccountsList(lstAccounts);
+
               return personRepository.save(person);
             });
   }
