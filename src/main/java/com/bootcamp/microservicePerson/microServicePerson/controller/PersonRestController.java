@@ -2,18 +2,13 @@ package com.bootcamp.microservicePerson.microServicePerson.controller;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
-import com.bootcamp.microservicePerson.microServicePerson.models.dto.AccountDto;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import com.bootcamp.microservicePerson.microServicePerson.service.IPersonService;
-import com.bootcamp.microservicePerson.microServicePerson.service.PersonServiceImpl;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.net.URI;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +24,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.support.WebExchangeBindException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

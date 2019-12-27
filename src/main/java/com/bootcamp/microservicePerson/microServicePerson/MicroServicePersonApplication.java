@@ -52,13 +52,8 @@ public class MicroServicePersonApplication implements CommandLineRunner {
   public void run(final String... args) throws Exception {
     mongoTemplate.dropCollection("persons").subscribe();
 
-    /*List<String> asd = new ArrayList<>();
-    asd.add("77777777777");
-    asd.add("22222222222");
-     */
-
     List<Account> asd = new ArrayList<>();
-    asd.add(new Account("321654","Cuenta de Ahorro", "VIp","Active"));
+    asd.add(new Account("Bcp","321654","Cuenta de Ahorro", "Vip","Active"));
     
     Flux.just(new Person("Jhonatan", "Aruhanca Vilca",
             "DNI", "70034427", "M",new Date(),new Date(),new Date(), asd))

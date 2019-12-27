@@ -1,23 +1,18 @@
 package com.bootcamp.microservicePerson.microServicePerson.service;
 
-import com.bootcamp.microservicePerson.microServicePerson.MicroServicePersonApplication;
 import com.bootcamp.microservicePerson.microServicePerson.convertion.ConvertPerson;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
-import com.bootcamp.microservicePerson.microServicePerson.models.dto.AccountDto;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import com.bootcamp.microservicePerson.microServicePerson.repository.PersonRepository;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -74,6 +69,7 @@ public class PersonServiceImpl implements IPersonService {
             .flatMap(person -> {
               List<Account> lstAccounts = person.getAccountsList();
               Account account = new Account();
+              account.setNomBank(personDto.getNomBank());
               account.setNumAccount(personDto.getNumAccount());
               account.setNomAccount(personDto.getNomAccount());
               account.setTypeAccount(personDto.getTypeAccount());

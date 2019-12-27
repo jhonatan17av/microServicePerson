@@ -1,7 +1,6 @@
 package com.bootcamp.microservicePerson.microServicePerson.service;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
-import com.bootcamp.microservicePerson.microServicePerson.models.dto.AccountDto;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

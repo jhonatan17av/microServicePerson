@@ -2,10 +2,8 @@ package com.bootcamp.microservicePerson.microServicePerson.convertion;
 
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Account;
 import com.bootcamp.microservicePerson.microServicePerson.models.documents.Person;
-import com.bootcamp.microservicePerson.microServicePerson.models.dto.AccountDto;
 import com.bootcamp.microservicePerson.microServicePerson.models.dto.PersonDto;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +15,7 @@ public class ConvertPerson {
         List<Account> lst = new ArrayList<>();
         Person person = new Person();
         Account account = new Account();
+        account.setNomBank(personDto.getNomBank());
         account.setNumAccount(personDto.getNumAccount());
         account.setNomAccount(personDto.getNomAccount());
         account.setTypeAccount(personDto.getTypeAccount());
