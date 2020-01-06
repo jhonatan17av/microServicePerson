@@ -2,6 +2,7 @@ package com.bootcamp.microservicePerson.microServicePerson.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ScopeMetadata;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.async.DeferredResult;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -20,7 +21,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.bootcamp.microservicePerson.microServicePerson.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
